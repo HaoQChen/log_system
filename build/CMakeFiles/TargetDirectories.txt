@@ -1,7 +1,0 @@
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/CMakeFiles/edit_cache.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/CMakeFiles/rebuild_cache.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/CMakeFiles/log_test.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/CMakeFiles/log_system.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/dlib_build/CMakeFiles/edit_cache.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/dlib_build/CMakeFiles/rebuild_cache.dir
-/home/night_fury/Documents/Qt_project/robot_system/log_system/build/dlib_build/CMakeFiles/dlib.dir
