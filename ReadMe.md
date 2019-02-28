@@ -16,7 +16,9 @@ follow the indication
 
 you can use pictures in the faces folder to test.
 
-Code is based on dlib example `dnn_face_recognition_ex`. Save data and read data to XML file by OpenCV's FileStorage.
+Code is based on dlib example `dnn_face_recognition_ex`. Save data and read data to XML file by OpenCV's FileStorage. It has been tested under Ubuntu1404 64bit, and all is well.
+
 Code is easy to understand, at least I think so.
+
 
 **Thank you for your star! (grinning)**
