@@ -11,6 +11,8 @@
 #include <dlib/clustering.h>
 #include <dlib/image_processing/frontal_face_detector.h>
 
+#include <opencv2/opencv.hpp>
+
 
 namespace logsystem
 {
@@ -70,19 +72,37 @@ namespace logsystem
 
     class UserManage{
     public:
-        UserManage(const string poud = "./users_data.xml", const double fst = 0.9);
+        UserManage(const string& poud = "./users_data.xml", const double fst = 0.9);
 
         //return 0 when everything is ok
         //return -1 when already have the same name
         //return -2 can not get the face description
-        int signUp(const std::string n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string p = "123456");
+        //return -3 image empty
+        int signUp(const std::string& n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string& p = "123456");
+        int signUp(const std::string& n, const cv::Mat& img, const std::string& p = "123456"){
+            if(img.empty())
+                return -3;
+            cv_image<bgr_pixel> image(img);
+            matrix<rgb_pixel> matrix;
+            assign_image(matrix, image);
+            return signUp(n, matrix, p);
+        }
 
         void deleteUser();
 
         //return >=0 when everything is ok, return the index of users_
         //return -1 did not match a user by kFaceSimilarityThreshold_
         //return -2 can not get the face description
+        //return -3 image empty
         int signInByFace(const dlib::matrix<dlib::rgb_pixel>& img);//return the index of users_
+        int signInByFace(const cv::Mat& img){
+            if(img.empty())
+                return -3;
+            cv_image<bgr_pixel> image(img);
+            matrix<rgb_pixel> matrix;
+            assign_image(matrix, image);
+            return signInByFace(matrix);
+        }
 
         //return >=0 when everything is ok, return the index of users_
         //return -1 can not find the user name in the list
@@ -132,7 +152,6 @@ namespace logsystem
         const double kFaceSimilarityThreshold_;
         int current_signin_;//index of users_
     };//class FaceLog
-
 
 }//ns logsystem
 

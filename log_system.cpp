@@ -57,7 +57,7 @@ namespace logsystem
     }
 
 
-    UserManage::UserManage(const string poud, const double fst) : kPathOfUsersData_(poud), kFaceSimilarityThreshold_(fst)
+    UserManage::UserManage(const string& poud, const double fst) : kPathOfUsersData_(poud), kFaceSimilarityThreshold_(fst)
     {
         current_signin_ = -1;
         readFromXML();
@@ -93,8 +93,10 @@ namespace logsystem
         fs.release();
     }
 
-    int UserManage::signUp(const std::string n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string p)
+    int UserManage::signUp(const std::string& n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string& p)
     {
+        if(img.size() == 0)
+            return -3;
         for(int i = 0; i < users_.size(); ++i){
             if(users_[i].name_ == n)//name can not be same with one of the users
                 return -1;
@@ -117,6 +119,8 @@ namespace logsystem
     //return the index of users_
     int UserManage::signInByFace(const dlib::matrix<dlib::rgb_pixel>& img)
     {
+        if(img.size() == 0)
+            return -3;
         matrix<float,0,1> face_desc;
         if(!GetFaceDescriptor(img, face_desc))
             return -2;

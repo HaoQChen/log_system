@@ -1,0 +1,9 @@
+build/
+!/build/log_test
+!/build/liblog_system.so
+!/build/users_data.xml
+!/build/faces
+
+*.o
+*~
+*.dump

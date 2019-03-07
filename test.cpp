@@ -1,13 +1,10 @@
 #include <map>
-
-#include <dlib/image_io.h>
-#include <dlib/gui_widgets.h>
-
 #include "log_system.h"
 
-using namespace dlib;
+
 using namespace std;
 using namespace logsystem;
+using namespace cv;
 
 
 
@@ -25,11 +22,11 @@ int main(int argc, char** argv) try
 {  
     string order;
     string n, p, pho;
-    matrix<rgb_pixel> img;
+    Mat img;
     int i_order;
     UserManage um;
     int result = 0;
-    image_window win;
+    cv::namedWindow("window", CV_WINDOW_AUTOSIZE);
 
     std::map<string, int> order_map;
     order_map["su"] = 1;
@@ -55,12 +52,12 @@ int main(int argc, char** argv) try
                 getline(std::cin, p);
                 cout << "Please enter photo path!" << endl;
                 getline(std::cin, pho);
-                load_image(img, pho);
-                if(img.size() == 0){
+                img = imread(pho);
+                if(img.empty()){
                     cout << "invalid photo" << endl;
                     break;
                 }
-                win.set_image(img);
+                cv::imshow("window", img);
                 result = um.signUp(n, img, p);
                 cout << "sign up result is: " << result << endl;
                 break;
@@ -68,12 +65,12 @@ int main(int argc, char** argv) try
                 cout << "Please enter photo path!" << endl;
                 getline(std::cin, pho);
                 
-                load_image(img, pho);
-                if(img.size() == 0){
+                img = imread(pho);
+                if(img.empty()){
                     cout << "invalid photo" << endl;
                     break;
                 }
-                win.set_image(img);
+                cv::imshow("window", img);
                 result = um.signInByFace(img);
                 cout << "sign in result is: " << result << ". means: " << um.getCurrentUserName() << endl;
                 break;

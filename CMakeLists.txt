@@ -14,8 +14,8 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 # link_directories(dlib)
 
-add_library(${PROJECT_NAME} log_system.cpp)
+add_library(${PROJECT_NAME} SHARED log_system.cpp)
 target_link_libraries(${PROJECT_NAME} dlib::dlib ${OpenCV_LIBS})
 
 add_executable(log_test test.cpp)
-target_link_libraries(log_test ${PROJECT_NAME}  dlib::dlib)
+target_link_libraries(log_test ${PROJECT_NAME}  ${OpenCV_LIBS})

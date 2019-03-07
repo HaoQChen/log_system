@@ -20,5 +20,11 @@ Code is based on dlib example `dnn_face_recognition_ex`. Save data and read data
 
 Code is easy to understand, at least I think so.
 
+@ 2019.03.07
+* change to build .so file, so add below command to CMakeLists.txt of dlib to fix bug
+`add_compile_options(-fPIC)`
+* change to use OpenCV to load image, so we don't need to add sub cmake
+* you can use dlib load and .a version before this day
+
 
 **Thank you for your star! (grinning)**

@@ -7,6 +7,10 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(dlib)
 
+
+# Add by HaoQChen for Dynamic compiling
+add_compile_options(-fPIC)
+
 set(CPACK_PACKAGE_NAME "dlib")
 set(CPACK_PACKAGE_VERSION_MAJOR "19")
 set(CPACK_PACKAGE_VERSION_MINOR "16")
