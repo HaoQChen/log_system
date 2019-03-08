@@ -9,6 +9,7 @@ project(dlib)
 
 
 # Add by HaoQChen for Dynamic compiling
+set(USE_AVX_INSTRUCTIONS ON)
 add_compile_options(-fPIC)
 
 set(CPACK_PACKAGE_NAME "dlib")

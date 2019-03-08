@@ -24,7 +24,7 @@ int main(int argc, char** argv) try
     string n, p, pho;
     Mat img;
     int i_order;
-    UserManage um;
+    LogSystem um;
     int result = 0;
     cv::namedWindow("window", CV_WINDOW_AUTOSIZE);
 

@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8.12)
 #use dlib to implement a log system by face detection and face alignment and face recognition
 project(log_system)
 
+
 add_subdirectory(./dlib/dlib dlib_build)
 
 #add_definitions(-std=c++11)

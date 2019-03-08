@@ -70,9 +70,9 @@ namespace logsystem
 
 
 
-    class UserManage{
+    class LogSystem{
     public:
-        UserManage(const string& poud = "./users_data.xml", const double fst = 0.9);
+        LogSystem(const string& poud = "./users_data.xml", const double fst = 0.9);
 
         //return 0 when everything is ok
         //return -1 when already have the same name
@@ -107,6 +107,7 @@ namespace logsystem
         //return >=0 when everything is ok, return the index of users_
         //return -1 can not find the user name in the list
         //return -2 password does not match
+        //return -3 name or password empty
         int signInByPassword(const std::string n, const std::string p);
 
         int signOut();
@@ -120,7 +121,7 @@ namespace logsystem
             }
         }
 
-        ~UserManage(){}
+        ~LogSystem(){}
 
         //return index of users_ 
         //-1 means not find

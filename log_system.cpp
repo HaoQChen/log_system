@@ -13,7 +13,7 @@ using namespace cv;
 
 
 
-#define DEBUG_OUT 1
+#define DEBUG_OUT 0
 
 
 
@@ -57,13 +57,13 @@ namespace logsystem
     }
 
 
-    UserManage::UserManage(const string& poud, const double fst) : kPathOfUsersData_(poud), kFaceSimilarityThreshold_(fst)
+    LogSystem::LogSystem(const string& poud, const double fst) : kPathOfUsersData_(poud), kFaceSimilarityThreshold_(fst)
     {
         current_signin_ = -1;
         readFromXML();
     }
 
-    void UserManage::save2XML()
+    void LogSystem::save2XML()
     {
         FileStorage fs(kPathOfUsersData_, FileStorage::WRITE);
         fs << "userCount" << (int)users_.size();
@@ -75,14 +75,14 @@ namespace logsystem
         fs.release();
     }
 
-    void UserManage::readFromXML()
+    void LogSystem::readFromXML()
     {
         FileStorage fs;
         if(fs.open(kPathOfUsersData_, FileStorage::READ)){
             int user_count = (int)fs["userCount"];
             for(int i = 0; i < user_count; ++i){
                 string n = (string)fs[string("No_") + to_string(i + 1)]["name"];
-                string p = (string)fs[string("No_") + to_string(i + 1)]["passpord"];
+                string p = (string)fs[string("No_") + to_string(i + 1)]["password"];
                 Mat mfd;
                 fs[string("No_") + to_string(i + 1)]["face_description"] >> mfd;
                 cv_image<float> cfd(mfd);
@@ -93,7 +93,7 @@ namespace logsystem
         fs.release();
     }
 
-    int UserManage::signUp(const std::string& n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string& p)
+    int LogSystem::signUp(const std::string& n, const dlib::matrix<dlib::rgb_pixel>& img, const std::string& p)
     {
         if(img.size() == 0)
             return -3;
@@ -110,14 +110,14 @@ namespace logsystem
         return 0;
     }
 
-    int UserManage::signOut()
+    int LogSystem::signOut()
     {
         current_signin_ = -1;
         return 0;
     }
 
     //return the index of users_
-    int UserManage::signInByFace(const dlib::matrix<dlib::rgb_pixel>& img)
+    int LogSystem::signInByFace(const dlib::matrix<dlib::rgb_pixel>& img)
     {
         if(img.size() == 0)
             return -3;
@@ -144,8 +144,10 @@ namespace logsystem
             return -1;
     }
 
-    int UserManage::signInByPassword(const std::string n, const std::string p)
+    int LogSystem::signInByPassword(const std::string n, const std::string p)
     {
+        if(n.size() == 0 || p.size() == 0)
+            return -3;
         int index = findByName(n);
         if(0 > index)
             return -1;
